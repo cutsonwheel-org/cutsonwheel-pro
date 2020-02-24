@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar color="light">
+        <ion-title>{{data?.title}}</ion-title>
+        <ion-buttons slot="primary">
+            <ion-button (click)="dismiss()">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <ion-card>
+        <img [src]="data?.featuredImage" />
+        <ion-card-header>
+            <ion-card-subtitle>
+                Created: {{data?.published.seconds * 1000 | date}}
+            </ion-card-subtitle>
+            <ion-card-title>{{data?.title}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            {{data?.description}}
+        </ion-card-content>
+
+        <ion-item [href]="data?.url">
+            <ion-icon name="link-outline" slot="start"></ion-icon>
+            <ion-label>
+                {{data?.url}}
+            </ion-label>
+        </ion-item>
+    </ion-card>
+</ion-content>

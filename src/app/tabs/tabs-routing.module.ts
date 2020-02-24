@@ -4,52 +4,49 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../tab1/tab1.module').then(m => m.Tab1PageModule)
-          }
-        ]
+        path: 'services',
+        loadChildren: () => import('../services/services.module').then( m => m.ServicesPageModule)
       },
       {
-        path: 'tab2',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
-          }
-        ]
+        path: 'jobs',
+        loadChildren: () => import('../jobs/jobs.module').then( m => m.JobsPageModule)
       },
       {
-        path: 'tab3',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../tab3/tab3.module').then(m => m.Tab3PageModule)
-          }
-        ]
+        path: 'news',
+        loadChildren: () => import('../news/news.module').then( m => m.NewsPageModule)
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/t/jobs',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/t/jobs',
     pathMatch: 'full'
   }
 ];
+// const routes: Routes = [
+//     {
+//       path: 'offers',
+//       loadChildren: () => import('../offers/offers.module').then( m => m.OffersPageModule)
+//     },
+//     {
+//       path: 'jobs',
+//       loadChildren: () => import('../jobs/jobs.module').then( m => m.JobsPageModule)
+//     },
+//     {
+//       path: '',
+//       redirectTo: '/t/jobs',
+//       pathMatch: 'full'
+//     }
+// ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

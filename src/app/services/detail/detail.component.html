@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar color="light">
+        <ion-title>{{data?.title}}</ion-title>
+        <ion-buttons slot="primary">
+            <ion-button (click)="dismiss()">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <ion-card>
+        <img [src]="data?.imageUrl" />
+        <ion-card-header>
+            <ion-card-subtitle>
+                Posted by: {{user?.displayName}}
+            </ion-card-subtitle>
+            <ion-card-title>{{data?.title}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            {{data?.description}}
+        </ion-card-content>
+
+        <ion-item>
+            <ion-icon name="calendar" slot="start"></ion-icon>
+            <ion-label>
+                <ng-container *ngIf="data.availability === 'alldays'; else options">
+                    All Days
+                </ng-container>
+                <ng-template #options>
+                    {{ data.availability != 'weekdays' ? 'Week end': 'Week days'}}
+                </ng-template>
+            </ion-label>
+            <ion-note slot="end">Availability</ion-note>
+        </ion-item>
+
+        <ion-item class="activated">
+            <ion-icon name="clipboard" slot="start"></ion-icon>
+            <ion-label>{{data.category}}</ion-label>
+            <ion-note slot="end">Category</ion-note>
+        </ion-item>
+
+        <ion-item>
+            <ion-icon name="clock" slot="start"></ion-icon>
+            <ion-label>{{data.duration}}</ion-label>
+            <ion-note slot="end">Duration</ion-note>
+        </ion-item>
+
+        <ion-item>
+            <ion-icon name="cash" slot="start"></ion-icon>
+            <ion-label>{{data.charges | currency:'PHP':'symbol-narrow' }}</ion-label>
+            <ion-note slot="end">Charges</ion-note>
+        </ion-item>
+    </ion-card>
+</ion-content>
